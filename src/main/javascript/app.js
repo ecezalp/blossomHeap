@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, BrowserRouter} from 'react-router-dom';
-import Flower from './components/flower';
+import Flower from "./components/flower.jsx";
 
 ReactDOM.render(
 	<Router history={BrowserRouter}>
