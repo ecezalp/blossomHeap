@@ -1,9 +1,13 @@
 package ozalp.restfulflower.controllers;
 
-import java.util.Map;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-public interface WelcomeController {
-  String welcome(Map<String, Object> model);
+@Controller
+public class WelcomeController {
+
+  @RequestMapping(value = "/")
+  public String index() {
+    return "index.html";
+  }
 }
-
-
