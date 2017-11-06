@@ -49,6 +49,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
+
         <!--<dependency>-->
             <!--<groupId>org.springframework.data</groupId>-->
             <!--<artifactId>spring-data-rest-webmvc</artifactId>-->
@@ -114,24 +115,26 @@
                     <installDirectory>target</installDirectory>
                 </configuration>
                 <executions>
+
                     <execution>
                         <id>install node and npm</id>
                         <goals>
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v4.4.5</nodeVersion>
+                            <nodeVersion>v6.0.0</nodeVersion>
                             <npmVersion>3.9.2</npmVersion>
                         </configuration>
                     </execution>
+
                     <execution>
-                    <id>npm install</id>
-                    <goals>
-                    <goal>npm</goal>
-                    </goals>
-                    <configuration>
-                    <arguments>install</arguments>
-                    </configuration>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
                     </execution>
 
                     <execution>
@@ -139,16 +142,11 @@
                         <goals>
                             <goal>gulp</goal>
                         </goals>
-
-                        <!-- optional: the default phase is "generate-resources" -->
-                        <phase>generate-resources</phase>
-
                         <configuration>
-                            <!-- optional: if not specified, it will run gulp's default
-                            task (and you can remove this whole <configuration> section.) -->
                             <arguments>webpack</arguments>
                         </configuration>
                     </execution>
+
                 </executions>
             </plugin>
         </plugins>
@@ -160,10 +158,12 @@
             <url>https://repo.spring.io/libs-release</url>
         </repository>
     </repositories>
+
     <pluginRepositories>
         <pluginRepository>
             <id>spring-releases</id>
             <url>https://repo.spring.io/libs-release</url>
         </pluginRepository>
     </pluginRepositories>
+
 </project>

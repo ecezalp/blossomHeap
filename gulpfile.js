@@ -1,6 +1,51 @@
-'use strict';
-
 var gulp = require('gulp');
+
+const GLOBS = {
+	sass: ['./src/scss/**/*.scss'],
+	js: ['./src/js/**/*.js'],
+	jsx: ['./src/js/**/*.jsx']
+};
+
+// webpack stream
+var path = require('path');
+var webpack = require('webpack-stream');
+gulp.task('webpack', function () {
+	return gulp.src('src/main/javascript/app.js')
+		.pipe(webpack({
+			output: {
+				path: path.join(__dirname, '/src/main/javascript'),
+				filename: 'bundle.js'
+			},
+			module: {
+				loaders: [
+					{
+						test: /\.jsx?$/,
+						loader: 'babel-loader',
+						exclude: /node_modules/,
+						query: {
+							cacheDirectory: true,
+							presets: ['react', 'env']
+						}
+					}]
+			}
+		}))
+		.pipe(gulp.dest('src/main/resources/static'));
+});
+
+// decompile scss into css
+var sass = require('gulp-sass');
+gulp.task('styles', function() {
+	gulp.src('src/main/styles/main.scss')
+		.pipe(sass().on('error', sass.logError))
+
+		.pipe(gulp.dest('src/main/resources/static'));
+});
+
+gulp.task('watch', function() {
+	gulp.watch('src/main/javascript/**/*')
+});
+
+
 
 // gulp.task('clean', function (cb) {
 // 	require('rimraf')('dist', cb);
@@ -116,33 +161,6 @@ var gulp = require('gulp');
 // 	gulp.watch('app/scss/**/*.scss', ['sass']);
 // 	gulp.watch('bower.json', ['wiredep']);
 // });
-
-var path = require('path');
-var webpack = require('webpack-stream');
-
-gulp.task('webpack', function () {
-	return gulp.src('src/main/javascript/app.js')
-		.pipe(webpack({
-			output: {
-				path: path.join(__dirname, '/src/main/javascript'),
-				filename: 'bundle.js'
-			},
-			module: {
-				loaders: [
-					{
-						test: /\.jsx?$/,
-						loader: 'babel-loader',
-						exclude: /node_modules/,
-						query: {
-							cacheDirectory: true,
-							presets: ['react', 'env']
-						}
-					}]
-			}
-		}))
-		.pipe(gulp.dest('dist/'));
-});
-
 // gulp.task('build', ['lint', 'html', 'images', 'fonts', 'misc']);
 
 // gulp.task('default', ['clean'], function () {
