@@ -143,7 +143,7 @@
                             <goal>gulp</goal>
                         </goals>
                         <configuration>
-                            <arguments>webpack</arguments>
+                            <arguments>build</arguments>
                         </configuration>
                     </execution>
 
