@@ -1,0 +1,1 @@
+mvn flyway:clean -url=jdbc:postgresql://localhost:5432/ecezalp

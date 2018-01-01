@@ -1,4 +1,4 @@
-package ozalp.restfulflower.welcome;
+package ozalp.restfulflower.domain.welcome;
 
 import lombok.Builder;
 import lombok.Data;

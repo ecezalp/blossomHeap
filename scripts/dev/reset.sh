@@ -1,0 +1,1 @@
+./scripts/dev/clean.sh && ./scripts/dev/migrate.sh

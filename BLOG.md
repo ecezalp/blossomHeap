@@ -15,3 +15,6 @@ module.exports = {
 
 // Refreshing static content with Spring MVC and Boot
 (BUILD_PATH)
+
+// add eslint
+
