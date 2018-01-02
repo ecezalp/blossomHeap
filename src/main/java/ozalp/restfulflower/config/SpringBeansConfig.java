@@ -2,22 +2,29 @@ package ozalp.restfulflower.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import ozalp.restfulflower.repositories.FlowerRepository;
 
-import javax.activation.DataSource;
+import javax.sql.DataSource;
 
 @Configuration
 public class SpringBeansConfig {
 
   @Bean
-  public DataSource mysqlDataSource() {
-    DriverManagerDataSource dataSource = new DriverManagerDataSource();
-    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-    dataSource.setUrl("jdbc:mysql://localhost:5432/ecezalp");
-    dataSource.setUsername("guest_user");
-    dataSource.setPassword("guest_password");
+  public DataSource postgresqlDataSource() {
+    DriverManagerDataSource driver = new DriverManagerDataSource();
+    driver.setDriverClassName("org.postgresql.Driver");
+    driver.setUrl("jdbc:postgresql://localhost:5432/ecezalp");
+    driver.setUsername("ecezalp");
+    driver.setPassword("");
 
-    return (DataSource) dataSource;
+    return driver;
+  }
+
+  @Bean
+  FlowerRepository flowerRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
+    return new FlowerRepository(namedParameterJdbcTemplate);
   }
 
 }

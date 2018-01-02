@@ -34,8 +34,13 @@ const WBBPACK_SRC_CONFIG = {
 			}, {
 				test: [/\.scss$/, /\.css$/],
 				loader: ExtractTextPlugin.extract(
-					'style-loader',
-					'css?sourceMap!sass?sourceMap'
+          {use: [{
+              loader: "css-loader"
+            }, {
+              loader: "sass-loader"
+            }],
+            // use style-loader in development
+            fallback: "style-loader"}
 				)
 			}, {
 				test: /(icons|fonts)/,
@@ -46,8 +51,10 @@ const WBBPACK_SRC_CONFIG = {
 			}
 		]
 	}, resolve: {
-		extensions: ['.js', '.jsx', '.json']
-	}
+		extensions: ['.js', '.jsx', '.json', '.scss', '.css']
+	}, plugins: [
+    new ExtractTextPlugin('styles/bundle.css')
+  ]
 };
 
 const WEBPACK_BUILD_CONFIG = _.merge({}, WBBPACK_SRC_CONFIG, {
@@ -104,7 +111,6 @@ gulp.task('watch', () => {
 		.pipe(webpackStream(_.merge({}, WEBPACK_BUILD_CONFIG, {
 			watch: true,
 			devtool: 'inline-source-map',
-			plugins: [new ExtractTextPlugin('styles/bundle.css')]
 		})))
 		.pipe(gulp.dest(BUILD_PATH))
 });

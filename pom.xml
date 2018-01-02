@@ -28,19 +28,16 @@
 
         <!--SPRING-->
 
-        <!--release train-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.data</groupId>-->
-            <!--<artifactId>spring-data-releasetrain</artifactId>-->
-            <!--<version>Kay-SR1</version>-->
-            <!--<scope>system</scope>-->
-            <!--<type>pom</type>-->
-        <!--</dependency>-->
-
         <!-- JDBC -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.springframework.boot</groupId>-->
+                    <!--<artifactId>spring-boot-starter-logging</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
         </dependency>
 
         <!--Spring testing-->
@@ -48,13 +45,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!--LOMBOK-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.0</version>
+            <version>1.16.8</version>
         </dependency>
 
         <!-- POSTGRES -->
@@ -63,12 +66,13 @@
             <artifactId>postgresql</artifactId>
             <version>9.4-1200-jdbc41</version>
             <scope>runtime</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-
-
-
-        <!--JPA-->
-        <!--POSTGRES JDBC-->
 
         <!--JUnit-->
         <dependency>
@@ -77,9 +81,19 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
 
-    <!--to remove random slf4j bindng error-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <plugins>

@@ -5,3 +5,5 @@ src/main/resources/application.properties
 ./BLOG.md
 ./TODO.md
 restfulFlower.iml
+package-lock.json
+

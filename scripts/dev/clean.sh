@@ -1,1 +1,1 @@
-mvn flyway:clean -url=jdbc:postgresql://localhost:5432/ecezalp
+mvn flyway:clean -Dflyway.url=jdbc:postgresql://localhost:5432/ecezalp -Dflyway.user=ecezalp

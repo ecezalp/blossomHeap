@@ -1,1 +1,1 @@
-mvn flyway:migrate -url=jdbc:postgresql://localhost:5432/ecezalp -user=ecezalp
+mvn flyway:migrate -Dflyway.url=jdbc:postgresql://localhost:5432/ecezalp -Dflyway.user=ecezalp
